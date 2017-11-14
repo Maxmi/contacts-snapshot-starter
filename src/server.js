@@ -5,6 +5,7 @@ const methodOverride = require('method-override')
 const routes = require('./server/routes');
 const middlewares = require('./server/middlewares');
 const session = require('express-session');
+const pgStore = require('connect-pg-simple')(session);
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views')
@@ -12,12 +13,19 @@ app.set('views', __dirname + '/views')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
+//initialize express-session to allow tracking of logged in users across sessions
 app.use(session({
-  store: new (require('connect-pg-simple')(session))(),
-  secret: 'hello world',
+  store: new pgStore({
+    conString: process.env.DATABASE_URL || 'postgres://localhost:5432/contacts_development'
+  }),
+  secret: 'mysessionsecret',
   resave: true,
-  saveUninitialized: false
-}))
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000
+  },
+  secure: true
+}));
 
 app.use(methodOverride('_method'))
 

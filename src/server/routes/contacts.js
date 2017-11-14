@@ -47,5 +47,12 @@ router.get('/search', (request, response, next) => {
     .catch( error => next(error) )
 })
 
+// router.get('/signup', (request, response, next) => {
+//   response.render('users/signup', {
+//     title: 'Sign Up',
+//     error: '',
+//     email: request.session.userID
+//   })
+// });
 
 module.exports = router
