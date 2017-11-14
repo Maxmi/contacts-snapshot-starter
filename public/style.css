@@ -98,3 +98,7 @@ nav .search-form input {
   color: red;
   font-weight: bold;
 }
+
+form.signup input, form.login input {
+  margin: 5px;
+}
