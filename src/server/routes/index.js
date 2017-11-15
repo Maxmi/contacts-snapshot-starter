@@ -12,7 +12,7 @@ router.get('/', (request, response, next) => {
       // console.log('session', request.session.userID);
       response.render('contacts/index', {
         contacts,
-        email: request.session.userID || ''
+        currentUser: request.session.userID || ''
       })
     })
     .catch( error => next(error) )

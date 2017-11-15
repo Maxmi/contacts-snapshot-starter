@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-
 const {navigateToHomePage} = require('../utils');
 
 //localhost:3000/users/signup
@@ -14,7 +13,7 @@ router.route('/signup')
     response.render('users/signup', {
       title: 'Sign Up',
       error: '',
-      email: request.session.userID
+      currentUser: request.session.userID
     })
 })
   .post((request, response, next) => {
@@ -32,7 +31,6 @@ router.route('/signup')
       bcrypt.hash(password, saltRounds, (err, hash) => {
         addUser(email, hash)
           .then(user => {
-            // console.log(user);
             navigateToHomePage(request, response, user);
           })
           .catch(err => {
@@ -52,7 +50,7 @@ router.route('/login')
   response.render('users/login', {
     title: 'Login',
     error: '',
-    email: request.session.userID
+    currentUser: request.session.userID
   });
 })
   .post((request, response, next) => {

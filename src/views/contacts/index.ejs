@@ -1,6 +1,6 @@
 <%- include ../partials/header.ejs %>
 <% if (currentUser) { %>
-  <h1>Welcome back <%= email %></h1>
+  <h1>Welcome <%= currentUser %></h1>
   <h1>Contacts</h1>
   <div class="contact-list">
     <% contacts.forEach(function(contact){ %>
@@ -16,9 +16,8 @@
   </div>
 
   <% } else { %>
-    <h1></h1>Please sign up or login</h1>
+    <h1>Please sign up or log in</h1>
     
-
   <% } %>
 
 <%- include ../partials/footer.ejs %>

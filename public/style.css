@@ -1,4 +1,4 @@
-html, body{
+html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -22,9 +22,16 @@ nav {
   padding: 0.3em 0.5em;
 }
 
+.empty-nav {
+  height: 30px;
+}
+
 nav a {
   text-decoration: none;
-  color: inherit;
+  color: black;
+  padding: 10px;
+  display: inline-block;
+  background-color: lightgrey;
 }
 
 nav .search-form {
@@ -60,6 +67,7 @@ nav .search-form input {
   display: flex;
   flex-direction: row;
   padding: 0.2em 0.3em;
+  border: 0.5px solid black;
 }
 .contact-list-member:hover{
   background-color: lightgrey;
