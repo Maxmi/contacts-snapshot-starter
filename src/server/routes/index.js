@@ -21,9 +21,14 @@ router.get('/', (request, response, next) => {
 router.get('/logout', (request, response, next) => {
   console.log('req session', request.session);
   if (request.session) {
-    request.session = null;
+    request.session.destroy(err => {
+      if(err) {
+        return next(err);
+      } else {
+        return response.redirect('/')
+      }
+    })
   }
-  response.redirect('/');
 });
 
 router.use('/contacts', contactsRoutes);

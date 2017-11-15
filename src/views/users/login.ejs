@@ -2,29 +2,28 @@
   <% if (email) { %>
     <h1>Welcome back <%= email %></h1>
 
-
     <% } else { %>
 
       <h1>Login Page</h1>
 
       <div class="form">
-        <form action="/users/login" method="POST" class="login">
-          <label for="email">Email:</label>
-          <input type="email" name="email">
+        <p class="error"><%= error %></p>
+          <form action="/users/login" method="POST" class="login">
+            <label for="email">Email:</label>
+            <input type="email" name="email">
+            <br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+            <br>
+
+            <button class="login" type="submit">Login</button>
+          </form>
+
           <br>
 
-          <label for="password">Password:</label>
-          <input type="password" name="password">
-          <br>
-
-          <button class="login" type="submit">Login</button>
-        </form>
-
-        <br>
-
-        <span>If you are not registered user, go
-        <a id="signuplink" href="signup">Sign Up first</a></span>
-
+          <span>If you are not registered user, go
+          <a id="signuplink" href="signup">Sign Up first</a></span>
 
       </div>
   <% } %>
