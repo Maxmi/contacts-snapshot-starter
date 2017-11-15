@@ -9,7 +9,7 @@ const middlewares = require('../middlewares');
 router.get('/', (request, response, next) => {
   contacts.findAll()
     .then((contacts) => {
-      console.log('session', request.session.userID);
+      // console.log('session', request.session.userID);
       response.render('contacts/index', {
         contacts,
         email: request.session.userID || ''
@@ -19,7 +19,7 @@ router.get('/', (request, response, next) => {
 })
 
 router.get('/logout', (request, response, next) => {
-  console.log('req session', request.session);
+  // console.log('req session', request.session);
   if (request.session) {
     request.session.destroy(err => {
       if(err) {

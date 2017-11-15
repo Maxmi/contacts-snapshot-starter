@@ -8,9 +8,6 @@ const cookieParser = require('cookie-parser');
 
 const {navigateToHomePage} = require('../utils');
 
-
-//should I put in separate functions actions like hashPassword, compareHash and put in another file(utils)?
-
 //localhost:3000/users/signup
 router.route('/signup')
   .get((request, response, next) => {
@@ -22,8 +19,8 @@ router.route('/signup')
 })
   .post((request, response, next) => {
     const {email, password} = request.body;
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
 
     if(!email || !password) {
       response.render('users/signup', {
@@ -35,7 +32,7 @@ router.route('/signup')
       bcrypt.hash(password, saltRounds, (err, hash) => {
         addUser(email, hash)
           .then(user => {
-            console.log(user);
+            // console.log(user);
             navigateToHomePage(request, response, user);
           })
           .catch(err => {

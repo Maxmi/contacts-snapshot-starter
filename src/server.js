@@ -13,7 +13,7 @@ app.set('views', __dirname + '/views')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
-//initialize express-session to allow tracking of logged in users across sessions
+//initialize express-session to allow tracking of logged in users across sessions and keep sessions in db
 app.use(session({
   store: new pgStore({
     conString: process.env.DATABASE_URL || 'postgres://localhost:5432/contacts_development'
@@ -26,6 +26,13 @@ app.use(session({
   },
   secure: true
 }));
+
+//making userID available in templates
+app.use((request, response, next) => {
+  response.locals.currentUser = request.session.userID;
+  next();
+})
+
 
 app.use(methodOverride('_method'))
 

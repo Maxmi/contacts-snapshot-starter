@@ -1,13 +1,19 @@
 <nav>
   <a href="/">Home</a>
-    <%# if (email) { %>
-      <form method="get" action="/contacts/search" class="search-form">
-        <input name="q" type="search" placeholder="search" value="<%= query %>" autofocus/>
-        <input type="submit" style="display: none" />
-      </form>
+  <% if (!currentUser) { %>
+
+    <a id="signuplink" href="users/signup">Sign Up</a>
+    <a id="loginlink" href="users/login">Login</a>
+
+  <% } else { %>
+    
+    <form method="get" action="/contacts/search" class="search-form">
+      <input name="q" type="search" placeholder="search" value="<%= query %>" autofocus/>
+      <input type="submit" style="display: none" />
+    </form>
 
       <a href="/contacts/new">New Contact</a>
       <a href="/logout">Logout</a>
-  <%# } %>
 
+  <% } %>
 </nav>
