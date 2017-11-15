@@ -1,12 +1,14 @@
 <%- include ../partials/header.ejs %>
+  <% if (email) { %>
+    <h1>Welcome back <%= email %></h1>
 
-  <h1>Login Page</h1>
 
-  <div class="form">
+    <% } else { %>
 
-      <div class="">
+      <h1>Login Page</h1>
 
-        <form action="/login" method="POST" class="login">
+      <div class="form">
+        <form action="/users/login" method="POST" class="login">
           <label for="email">Email:</label>
           <input type="email" name="email">
           <br>
@@ -21,10 +23,9 @@
         <br>
 
         <span>If you are not registered user, go
-        <a id="signuplink" href="signup">Sign Up</a> first</span>
+        <a id="signuplink" href="signup">Sign Up first</a></span>
+
 
       </div>
-
-  </div>
-
+  <% } %>
 <%- include ../partials/footer.ejs %>

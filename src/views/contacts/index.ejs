@@ -1,7 +1,6 @@
 <%- include ../partials/header.ejs %>
-
+<% if (email) { %>
   <h1>Contacts</h1>
-
   <div class="contact-list">
     <% contacts.forEach(function(contact){ %>
       <div class="contact-list-member">
@@ -15,4 +14,14 @@
     <% }) %>
   </div>
 
+  <% } else { %>
+
+    <p>If you are not registered user, go
+    <a id="signuplink" href="users/signup">Sign Up first</a></p>
+
+    <p>If you are registered user, please
+    <a id="loginlink" href="users/login">Login here</a></p>
+
+
+<% } %>
 <%- include ../partials/footer.ejs %>

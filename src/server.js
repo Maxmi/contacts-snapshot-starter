@@ -19,7 +19,7 @@ app.use(session({
     conString: process.env.DATABASE_URL || 'postgres://localhost:5432/contacts_development'
   }),
   secret: 'mysessionsecret',
-  resave: true,
+  resave: false,
   saveUninitialized: false,
   cookie: {
     expires: 600000

@@ -12,5 +12,8 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   email varchar(255) UNIQUE NOT NULL PRIMARY KEY,
   password varchar(255) NOT NULL,
-  role text DEFAULT regular
+  role text DEFAULT 'regular'
 );
+
+INSERT into users (email, password, role)
+VALUES ('admin@test.com', '123', 'admin');

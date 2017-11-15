@@ -1,5 +1,18 @@
-const renderError = function(error, request, response){
+const renderError = (error, request, response) => {
   response.send(`ERROR: ${error.message}\n\n${error.stack}`)
 }
 
-module.exports = {renderError}
+const navigateToHomePage = (request, response, user) => {
+  request.session.userID = user.email;
+  response.redirect('/');
+}
+
+const renderUnathorized = (response) => {
+  response.send('Access forbidden')
+}
+
+module.exports = {
+  renderError,
+  navigateToHomePage,
+  renderUnathorized
+}
