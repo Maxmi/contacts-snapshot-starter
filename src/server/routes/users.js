@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const {navigateToHomePage} = require('../utils');
 
+
 //localhost:3000/users/signup
 router.route('/signup')
   .get((request, response, next) => {
@@ -23,7 +24,7 @@ router.route('/signup')
 
     if(!email || !password) {
       response.render('users/signup', {
-        email: '',
+        currentUser: '',
         title: 'Sign Up',
         error: 'Provide both email and password to sign up'
       });
@@ -35,7 +36,7 @@ router.route('/signup')
           })
           .catch(err => {
             response.render('users/signup', {
-              email: '',
+              currentUser: '',
               title: 'Sign Up',
               error: 'Could not add user to database'
             })
@@ -57,7 +58,7 @@ router.route('/login')
     const {email, password} = request.body;
     if(!(email || password)) {
       response.render('users/login', {
-        email: '',
+        currentUser: '',
         title: 'Login',
         error: 'Provide both email and password to login'
       })
@@ -70,7 +71,7 @@ router.route('/login')
                 navigateToHomePage(request, response, user);
               } else {
                 response.render('users/login', {
-                  email: '',
+                  currentUser: '',
                   title: 'Login',
                   error: 'Wrong email or password. Please try again'
                 })
@@ -78,7 +79,7 @@ router.route('/login')
             })
             .catch(err => {
               response.render('users/login', {
-                email: '',
+                currentUser: '',
                 title: 'Login',
                 error: 'Could not retrieve this user from db'
               })

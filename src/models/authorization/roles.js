@@ -1,25 +1,32 @@
-const ALL_USER_ROLES = ['admin', 'viewer'];
+const ALL_USER_ROLES = ['admin', 'regular'];
 
-const CAPABALITY_ROLES = {
-  viewContacts: ['admin', 'viewer'],
-  viewContact: ['admin', 'viewer'],
-  createContact: ['admin'],
-  deleteContact: ['admin']
+// const ACTIONS_TO_ROLES = {
+  // viewContacts: ['admin', 'regular'],
+  // createContact: ['admin'],
+  // deleteContact: ['admin']
+// };
+
+//make something like above for urls and actions that users can navigate to
+const URLS_TO_ROLES = {
+  'index': ['admin', 'regular'],
+  'new': ['admin'],
+  'show': ['admin', 'regular'],
+  'signup': ['regular'],
+  'login': ['regular'],
+  'logout': ['admin','regular']
+}
+
+const hasPermission = (role, url) => {
+  // const allRoutes = Object.keys(URLS_TO_ROLES);
+  // const isValidRole = ACTIONS_TO_ROLES.includes(role);
+  // if(!isValidRole) {
+  //   throw new Error(`Role "${role}" does not exis`)
+  // } else if (!allActions.includes(action)) {
+  //   throw new Error(`Action: "${action}" does not exist`);
+  // } else {
+  //   return ACTIONS_TO_ROLES[action].includes(role);
+  // }
+  return URLS_TO_ROLES[url].includes(role);
 };
 
-const userHasAccess = (user, action) => {
-  const role = user.role;
-  const allActions = Object.keys(CAPABALITY_ROLES)
-  const isValidRole = ALL_USER_ROLES.includes(role);
-  if(!isValidRole) {
-    //return false; //throw exception
-    throw new Error(`User ${user.username} does not have a role`)
-  } else if (!allActions.includes(action)) {
-    // return false; //throw exception
-    throw new Error(`Tried to get permissions for an invalid action. Action: ${action}`);
-  } else {
-    const capabilities = CAPABALITY_ROLES[action];
-    return capabilities.includes(user.role);
-  }
-};
-//userHasAccess(user, 'viewContacts'); => true or false
+module.exports = {hasPermission};

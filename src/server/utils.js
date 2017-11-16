@@ -7,12 +7,13 @@ const navigateToHomePage = (request, response, user) => {
   response.redirect('/');
 }
 
-const renderUnathorized = (response) => {
-  response.send('Access forbidden')
-}
+
+// const renderUnathorized = (response) => {
+//   response.send('Access forbidden')
+// }
 
 module.exports = {
   renderError,
   navigateToHomePage,
-  renderUnathorized
+  // renderUnathorized
 }

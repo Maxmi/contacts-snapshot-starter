@@ -1,6 +1,6 @@
 const db = require('./db')
 
-const addUser = function(email, password){
+const addUser = (email, password) => {
   return db.one(`
     INSERT INTO
       users (email, password)
@@ -13,7 +13,6 @@ const addUser = function(email, password){
       email, password
     ])
     .catch(error => {
-      // console.log(error);
       console.error({message: 'Error occurred while executing users.addUser',
                      arguments: arguments});
       throw error
@@ -21,7 +20,7 @@ const addUser = function(email, password){
   };
 
 
-  const getUser = function(email, password){
+  const getUser = (email, password) => {
     return db.one(`
       SELECT email, password
       FROM users

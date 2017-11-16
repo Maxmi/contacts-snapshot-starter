@@ -19,7 +19,7 @@ app.use(session({
     conString: process.env.DATABASE_URL || 'postgres://localhost:5432/contacts_development'
   }),
   secret: 'mysessionsecret',
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   cookie: {
     expires: 600000
@@ -31,12 +31,25 @@ app.use(session({
 app.use((request, response, next) => {
   response.locals.currentUser = request.session.userID;
   next();
-})
+});
+
+//making user available in routes (hiding that we are using express-sessions)
+// app.use((request, response, next) => {
+//   request.user = request.session.user;
+//   next();
+// });
 
 
 app.use(methodOverride('_method'))
 
 app.use(middlewares.setDefaultResponseLocals)
+
+
+// app.use(middlewares.sessionChecker)
+
+// app.use(middlewares.deleteCookieForStaleSession)
+
+
 
 app.use('/', routes)
 

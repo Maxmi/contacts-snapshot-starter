@@ -16,4 +16,27 @@ const setDefaultResponseLocals = (request, response, next) => {
   next()
 }
 
-module.exports = { errorHandler, logErrors, notFoundHandler, setDefaultResponseLocals };
+//added new
+const sessionChecker = (request, response, next) => {
+  if(!(request.session.user && request.cookie.userID)) {
+    response.redirect('/');
+  } else {
+    next();
+  }
+};
+
+//added new
+const deleteCookieForStaleSession = (request, response, next) => {
+  if(request.cookies && request.cookies.userID && !request.session.user) {
+    response.clearCookie('userID');
+  } else {
+    next();
+  }
+};
+
+module.exports = {
+  errorHandler,
+  logErrors,
+  notFoundHandler,
+  setDefaultResponseLocals
+ };

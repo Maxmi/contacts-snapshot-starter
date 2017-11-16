@@ -9,7 +9,6 @@ const middlewares = require('../middlewares');
 router.get('/', (request, response, next) => {
   contacts.findAll()
     .then((contacts) => {
-      // console.log('session', request.session.userID);
       response.render('contacts/index', {
         contacts,
         currentUser: request.session.userID || ''
