@@ -1,13 +1,3 @@
-Bugs:
-
-sometimes when I log in after making changes or restart
-I still get
-Please sign up or log in message
-If I click on Home page - then it recognizes me
-Something is wrong with navigateToHomePage function ?
-Or maybe it was becasue of that new m/w function I added into server.js 
-
-
 # Contacts Snapshot starter project
 
 ## Dev Setup
