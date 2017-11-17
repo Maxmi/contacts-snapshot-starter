@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const contactsRoutes = require('./contacts')
+const contactsRoutes = require('./contacts');
 const contacts = require('../../models/contacts');
 
 const userRoutes = require('./users');
@@ -12,21 +12,20 @@ router.get('/', (request, response, next) => {
       response.render('contacts/index', {
         contacts,
         currentUser: request.session.userID || ''
-      })
+      });
     })
-    .catch( error => next(error) )
-})
+    .catch( error => next(error) );
+});
 
 router.get('/logout', (request, response, next) => {
-  // console.log('req session', request.session);
   if (request.session) {
     request.session.destroy(err => {
       if(err) {
         return next(err);
       } else {
-        return response.redirect('/')
+        return response.redirect('/');
       }
-    })
+    });
   }
 });
 
@@ -35,8 +34,6 @@ router.use('/users', userRoutes);
 
 router.use(middlewares.logErrors);
 router.use(middlewares.errorHandler);
-router.use(middlewares.notFoundHandler)
-
-
+router.use(middlewares.notFoundHandler);
 
 module.exports = router;

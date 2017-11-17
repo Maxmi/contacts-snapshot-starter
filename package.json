@@ -10,7 +10,8 @@
     "load_schema": "psql -d contacts_development < src/models/db/schema/schema.sql",
     "load_contacts": "psql -d contacts_development < test/seed/contacts.sql",
     "session_store:create": "psql contacts_development < node_modules/connect-pg-simple/table.sql",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js"
   },
   "keywords": [],
   "author": "",

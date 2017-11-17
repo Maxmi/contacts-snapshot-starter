@@ -1,4 +1,4 @@
-const db = require('./db')
+const db = require('./db');
 
 const create = function(contact){
   return db.query(`
@@ -15,10 +15,10 @@ const create = function(contact){
     ])
     .catch(error => {
       console.error({message: 'Error occurred while executing contacts.create',
-                     arguments: arguments});
-      throw error
+        arguments: arguments});
+      throw error;
     });
-}
+};
 
 const findAll = function(){
   return db.query(`
@@ -29,9 +29,9 @@ const findAll = function(){
     `, [])
     .catch(error => {
       console.error({message: 'Error occurred while executing contacts.findAll',
-                     arguments: arguments});
-      throw error});
-}
+        arguments: arguments});
+      throw error;});
+};
 
 const findById = function(contactId){
   return db.any(`
@@ -41,9 +41,9 @@ const findById = function(contactId){
     .then( contacts => contacts[0])
     .catch(error => {
       console.error({message: 'Error occurred while executing contacts.findById',
-                     arguments: arguments});
-      throw error});
-}
+        arguments: arguments});
+      throw error;});
+};
 
 const destroy = function(contactId){
   return db.query(`
@@ -55,9 +55,9 @@ const destroy = function(contactId){
     [contactId])
     .catch(error => {
       console.error({message: 'Error occurred while executing contacts.destroy',
-                     arguments: arguments});
-      throw error});
-}
+        arguments: arguments});
+      throw error;});
+};
 
 const search = function(searchQuery){
   return db.query(`
@@ -71,9 +71,9 @@ const search = function(searchQuery){
     [`%${searchQuery.toLowerCase().replace(/\s+/,'%')}%`])
     .catch(error => {
       console.error({message: 'Error occurred while executing contacts.search',
-                     arguments: arguments});
-      throw error});
-}
+        arguments: arguments});
+      throw error;});
+};
 
 module.exports = {
   create,
@@ -81,4 +81,4 @@ module.exports = {
   findAll,
   destroy,
   search
-}
+};

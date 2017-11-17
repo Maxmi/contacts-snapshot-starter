@@ -9,4 +9,4 @@ module.exports = {
   findById: db.findById,
   destroy: db.destroy,
   search: db.search
-}
+};

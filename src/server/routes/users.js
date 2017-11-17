@@ -1,26 +1,22 @@
-const {addUser, getUser} = require('../../models/db/users');
+const { addUser, getUser } = require('../../models/db/users');
 
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+// const bodyParser = require('body-parser');
+// const cookieParser = require('cookie-parser');
 const {navigateToHomePage} = require('../utils');
 
-
-//localhost:3000/users/signup
 router.route('/signup')
-  .get((request, response, next) => {
+  .get((request, response) => {
     response.render('users/signup', {
       title: 'Sign Up',
       error: '',
       currentUser: request.session.userID
-    })
-})
-  .post((request, response, next) => {
+    });
+  })
+  .post((request, response) => {
     const {email, password} = request.body;
-    // console.log(email);
-    // console.log(password);
 
     if(!email || !password) {
       response.render('users/signup', {
@@ -39,29 +35,28 @@ router.route('/signup')
               currentUser: '',
               title: 'Sign Up',
               error: 'Could not add user to database'
-            })
-          })
-      })
+            });
+          });
+      });
     }
-})
-
-//localhost:3000/users/login
-router.route('/login')
-  .get((request, response, next) => {
-  response.render('users/login', {
-    title: 'Login',
-    error: '',
-    currentUser: request.session.userID
   });
-})
-  .post((request, response, next) => {
+
+router.route('/login')
+  .get((request, response) => {
+    response.render('users/login', {
+      title: 'Login',
+      error: '',
+      currentUser: request.session.userID
+    });
+  })
+  .post((request, response) => {
     const {email, password} = request.body;
     if(!(email || password)) {
       response.render('users/login', {
         currentUser: '',
         title: 'Login',
         error: 'Provide both email and password to login'
-      })
+      });
     } else {
       getUser(email, password)
         .then((user) => {
@@ -74,7 +69,7 @@ router.route('/login')
                   currentUser: '',
                   title: 'Login',
                   error: 'Wrong email or password. Please try again'
-                })
+                });
               }
             })
             .catch(err => {
@@ -82,12 +77,12 @@ router.route('/login')
                 currentUser: '',
                 title: 'Login',
                 error: 'Could not retrieve this user from db'
-              })
-            })
-        })
+              });
+            });
+        });
     }
-});
+  });
 
 
 
-module.exports = router
+module.exports = router;

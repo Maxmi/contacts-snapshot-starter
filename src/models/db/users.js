@@ -1,4 +1,4 @@
-const db = require('./db')
+const db = require('./db');
 
 const addUser = (email, password) => {
   return db.one(`
@@ -14,29 +14,29 @@ const addUser = (email, password) => {
     ])
     .catch(error => {
       console.error({message: 'Error occurred while executing users.addUser',
-                     arguments: arguments});
-      throw error
+        arguments: arguments});
+      throw error;
     });
-  };
+};
 
 
-  const getUser = (email, password) => {
-    return db.one(`
+const getUser = (email, password) => {
+  return db.one(`
       SELECT email, password, role
       FROM users
       WHERE email = $1
       `,
-      [
-        email, password
-      ])
-      .catch(error => {
-        console.error({message: 'Error occurred while executing users.getUser',
-                       arguments: arguments});
-        throw error
-      });
-    };
+    [
+      email, password
+    ])
+    .catch(error => {
+      console.error({message: 'Error occurred while executing users.getUser',
+        arguments: arguments});
+      throw error;
+    });
+};
 
-    module.exports = {
-      addUser,
-      getUser
-    }
+module.exports = {
+  addUser,
+  getUser
+};

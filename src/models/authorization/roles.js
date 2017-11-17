@@ -20,6 +20,4 @@ const isValidRole = role => ALL_USER_ROLES.includes(role);
 // value can be url or action
 const hasPermission = (role, value) => isValidRole(role) && ((URLS_TO_ROLES[value] && URLS_TO_ROLES[value].includes(role)) || (ACTIONS_TO_ROLES[value] && ACTIONS_TO_ROLES[value].includes(role)));
 
-
-
 module.exports = { hasPermission };
