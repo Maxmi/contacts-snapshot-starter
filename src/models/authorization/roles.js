@@ -1,32 +1,25 @@
 const ALL_USER_ROLES = ['admin', 'regular'];
 
-// const ACTIONS_TO_ROLES = {
-  // viewContacts: ['admin', 'regular'],
-  // createContact: ['admin'],
-  // deleteContact: ['admin']
-// };
-
-//make something like above for urls and actions that users can navigate to
-const URLS_TO_ROLES = {
-  'index': ['admin', 'regular'],
-  'new': ['admin'],
-  'show': ['admin', 'regular'],
-  'signup': ['regular'],
-  'login': ['regular'],
-  'logout': ['admin','regular']
-}
-
-const hasPermission = (role, url) => {
-  // const allRoutes = Object.keys(URLS_TO_ROLES);
-  // const isValidRole = ACTIONS_TO_ROLES.includes(role);
-  // if(!isValidRole) {
-  //   throw new Error(`Role "${role}" does not exis`)
-  // } else if (!allActions.includes(action)) {
-  //   throw new Error(`Action: "${action}" does not exist`);
-  // } else {
-  //   return ACTIONS_TO_ROLES[action].includes(role);
-  // }
-  return URLS_TO_ROLES[url].includes(role);
+const ACTIONS_TO_ROLES = {
+  viewContacts: ['admin', 'regular'],
+  createContact: ['admin'],
+  deleteContact: ['admin'],
 };
 
-module.exports = {hasPermission};
+const URLS_TO_ROLES = {
+  index: ['admin', 'regular'],
+  new: ['admin'],
+  show: ['admin', 'regular'],
+  signup: ['regular'],
+  login: ['regular'],
+  logout: ['admin', 'regular'],
+};
+
+const isValidRole = role => ALL_USER_ROLES.includes(role);
+
+// value can be url or action
+const hasPermission = (role, value) => isValidRole(role) && ((URLS_TO_ROLES[value] && URLS_TO_ROLES[value].includes(role)) || (ACTIONS_TO_ROLES[value] && ACTIONS_TO_ROLES[value].includes(role)));
+
+
+
+module.exports = { hasPermission };

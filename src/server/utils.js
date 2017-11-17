@@ -3,7 +3,10 @@ const renderError = (error, request, response) => {
 }
 
 const navigateToHomePage = (request, response, user) => {
+  console.log(user);
   request.session.userID = user.email;
+  request.session.userRole = user.role;
+  console.log('userRole is here', user.role);
   response.redirect('/');
 }
 

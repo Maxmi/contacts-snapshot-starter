@@ -30,26 +30,14 @@ app.use(session({
 //making userID available in templates
 app.use((request, response, next) => {
   response.locals.currentUser = request.session.userID;
+  response.locals.role = request.session.userRole;
   next();
 });
-
-//making user available in routes (hiding that we are using express-sessions)
-// app.use((request, response, next) => {
-//   request.user = request.session.user;
-//   next();
-// });
 
 
 app.use(methodOverride('_method'))
 
 app.use(middlewares.setDefaultResponseLocals)
-
-
-// app.use(middlewares.sessionChecker)
-
-// app.use(middlewares.deleteCookieForStaleSession)
-
-
 
 app.use('/', routes)
 

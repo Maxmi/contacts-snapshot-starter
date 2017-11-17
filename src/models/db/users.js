@@ -22,7 +22,7 @@ const addUser = (email, password) => {
 
   const getUser = (email, password) => {
     return db.one(`
-      SELECT email, password
+      SELECT email, password, role
       FROM users
       WHERE email = $1
       `,

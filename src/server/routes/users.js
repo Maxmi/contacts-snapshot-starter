@@ -64,9 +64,9 @@ router.route('/login')
       })
     } else {
       getUser(email, password)
-        .then(user => {
+        .then((user) => {
           bcrypt.compare(password, user.password)
-            .then(result => {
+            .then((result) => {
               if(result) {
                 navigateToHomePage(request, response, user);
               } else {
