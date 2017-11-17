@@ -1,5 +1,10 @@
 const db = require('./db');
 
+/**
+ * saves newly registered user id db
+ * @param {string} email    [provided by user at registration]
+ * @param {string} password [provided by user at registration]
+ */
 const addUser = (email, password) => {
   return db.one(`
     INSERT INTO
@@ -19,7 +24,12 @@ const addUser = (email, password) => {
     });
 };
 
-
+/**
+ * retrieves user from db
+ * @param  {string} email    [privided by user at login]
+ * @param  {string} password [privided by user at login]
+ * @return {object}          [user with email, password and role properties]
+ */
 const getUser = (email, password) => {
   return db.one(`
       SELECT email, password, role

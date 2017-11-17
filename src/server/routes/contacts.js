@@ -30,7 +30,7 @@ router.get('/:contactId', (request, response, next) => {
 });
 
 
-//available to admin only
+//creating new contact available to admin only
 router.get('/new', (request, response) => {
   const userRole = request.session.userRole;
   if(hasPermission(userRole, 'new')) {
@@ -56,7 +56,7 @@ router.post('/', (request, response, next) => {
   }
 });
 
-//available to admin only
+//deleting contact available to admin only
 router.delete('/:contactId', (request, response, next) => {
   const contactId = request.params.contactId;
   const userRole = request.session.userRole;

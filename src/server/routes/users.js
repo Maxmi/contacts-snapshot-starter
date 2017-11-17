@@ -3,10 +3,12 @@ const { addUser, getUser } = require('../../models/db/users');
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-// const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-const {navigateToHomePage} = require('../utils');
+const { navigateToHomePage } = require('../utils');
 
+/**
+ * GET and POST requests to signup page
+ * @type {String}
+ */
 router.route('/signup')
   .get((request, response) => {
     response.render('users/signup', {
@@ -41,6 +43,10 @@ router.route('/signup')
     }
   });
 
+/**
+ * GET and POST requests to login page 
+ * @type {String}
+ */
 router.route('/login')
   .get((request, response) => {
     response.render('users/login', {
